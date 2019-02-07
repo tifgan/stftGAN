@@ -1,1 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>TiFGAN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
 
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-pale-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">TiFGAN</a>
+    <a href="#S-E" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sound examples</a>
+    <a href="#P-E" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Phase examples</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#S-E" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sound examples</a>
+    <a href="#P-E" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Phase examples</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-pale-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">TiFGAN</h1>
+    <h5 class="w3-xlarge">This website accompanies the work presented as a <a href="https://www.researchgate.net/publication/link" target="_blank">pre-print here</a>.</h5>
+    <h5 class="w3-xlarge">The code used can be found <a href="https://github.com/tifgan/stftGAN" target="_blank">here</a>. <a href="https://github.com/tifgan/stftGAN" target="_blank" class="fa fa-github w3-hover-opacity"></a></h5>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-32 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h5 class="w3-padding-32">
+        We introduce TiFGAN, the first GAN to generate audio successfully using a Time-Frequency (TF) representation and improving on the current state-of-the-art for audio synthesis with GANs. TiFGAN is an adaptation of DCGAN, originally proposed for image generation. The TiFGAN architecture additionally relies on the guidelines and principles for generating short-time Fourier data that we presented in the accompanying paper (available below in this section). 
+      </h5>
+
+      <h1><img src="images/distributions.png" alt="Change in distributions from spectrogram to log-spectrogam" width=100%></h1>
+
+
+      <h5 class="w3-padding-32">
+<p>Since the distribution of values in the magnitude of the STFT is not well suited for a GAN (see  Figure above) we use log-magnitude coefficients. We first normalize the STFT magnitude to have maximum value 1, such that the log-magnitude is confined in (-inf, 0]. Then, the dynamic range of the log-magnitude is limited by clipping at -r (in our experiments r=10), before scaling and shifting to the range of the generator output [-1,1], i.e. dividing by r/2 before adding constant 1.
+</p>
+<p>
+For TiFGAN-M, the phase derivatives are estimated from the generated log-magnitude. For both TiFGAN-M and TiFGAN-MTF, the phase is reconstructed from the phase derivative estimates using phase-gradient heap integration (PGHI) (see Prusa et Al), which requires no iteration, such that reconstruction time is comparable to simply integrating the phase derivatives.
+</p>
+<p>
+For synthesis from the STFT, we use the canonical dual window, precomputed using the Large Time-Frequency Analysis Toolbox (LTFAT) .
+</p>
+<p>
+The general architecture for TiFGAN is depicted below. For the purpose of this contribution, we restrict to generating 1 second of audio data, sampled at 16kHz. For the short-time Fourier transform, we fix the minimal redundancy that we consider reliable, i.e., M/a = 4 and select a=128, M=512. Since the Nyquist frequency is not expected to hold significant information for the considered signals, we drop it to arrive at a representation size of 256x128, which is well suited to processing using strided convolutions. 
+</p>
+      <h1><img src="images/tfgan3.png" alt="Change in distributions from spectrogram to log-spectrogam" width=100%></h1>
+
+      </h5>
+
+    </div>
+
+
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div id="S-E"  class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+
+    <div class="w3-twothird">
+      <h1>Sound examples</h1>
+        <h5>Results obtained training on a speech dataset obtained as a subset of spoken digits "zero" through "nine" (sc09) from the <a href="https://ai.googleblog.com/2017/08/launching-speech-commands-dataset.html" target="_blank">"Speech Commands Dataset"</a>. The dataset is not curated, some samples are noisy or poorly labeled, the considered subset consists of approximately 23,000 samples.</h5>
+
+            <ul style="list-style-type:none">
+                <li>
+                   <audio controls>
+                    <source src="audio_examples/trained/commands-original.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Original
+                </li>
+
+                <li><audio controls>
+                    <source src="audio_examples/trained/commands-TFGAN-M.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> TFGAN-M
+                </li>
+                <li><audio controls>
+                    <source src="audio_examples/trained/commands-TFGAN-MTF.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> TFGAN-MTF
+                </li>
+                <li><audio controls>
+                    <source src="audio_examples/trained/commands-wavegan.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> WaveGAN
+                </li>
+            </ul>
+            
+<div class="aligncenter" style="width:150%;height:2px;background-color:#777777;"></div> 
+         
+        <h5>Results obtained training on a music dataset obtained from 25 minutes of piano recordings of Bach compositions, segmented into approximately 19,000 overlapping samples of 1s duration. Provided by <a href="https://github.com/chrisdonahue/wavegan" target="_blank">Donahue et Al</a>.</h5>
+
+            <ul style="list-style-type:none">
+                <li>
+                   <audio controls>
+                    <source src="audio_examples/trained/piano-original.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Original
+                </li>
+
+                <li><audio controls>
+                    <source src="audio_examples/trained/piano-TFGAN-M.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> TFGAN-M
+                </li>
+                <li><audio controls>
+                    <source src="audio_examples/trained/piano-wavegan.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> WaveGAN
+                </li>
+            </ul>
+
+            <div class="aligncenter" style="width:150%;height:2px;background-color:#777777;"></div> 
+
+        <h5>TiFGAN-M generates magnitude log-magnitude spectrograms from which we reconstruct the phase using PGHI. To test the artifacts that this pipeline might bring, we applied the same processing to the original samples.</h5>
+
+            <ul style="list-style-type:none">
+                <li>
+                   <audio controls>
+                    <source src="audio_examples/trained/piano-original_pipeline.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Commands
+                </li>
+
+                <li><audio controls>
+                    <source src="audio_examples/trained/piano-original_pipeline.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Piano
+                </li>
+            </ul>
+            
+            
+    </div>
+  </div>
+</div>
+
+<!-- Third Grid -->
+<div id="P-E" class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Different phase recovery strategies</h1>
+
+        <h1><img src="images/sines_phases.png" alt="Trumpet" width=100%></h1>
+         <h6>Overview of spectral changes resulting from different phase reconstruction methods. (1) Original log-magnitude, (2-4) log-magnitude differences between original and signals restored with (2) cumulative sum along channels (initialized with zeros), (3) PGHI from phase derivatives (4) PGHI from magnitude only and phase estimated from the phase-magnitude relations.</h6>
+
+         <h5>
+         <p>It may seem straightforward to restore the phase from its time-direction derivative by summation along frequency channels as proposed by <a href="https://openreview.net/pdf?id=H1xQVn09FX" target="_blank">Engel et Al<a>. Even on real, unmodified STFTs, the resulting phase misalignment introduces cancellation between frequency bands resulting in energy loss, see Figure above (2) for a simple example. In practice, such cancellations often leads to clearly perceptible changes of timbre (see below). Moreover, in areas of small STFT magnitude, the phase is known to be unreliable (see <a href="https://arxiv.org/abs/1103.0409" target="_blank">Balazs et Al</a>) and highly sensitive to distortions (see <a href="https://arxiv.org/abs/1901.05296" target="_blank">Alaifari et Al</a>), such that it cannot be reliably modelled and synthesis from generated phase derivatives is likely to introduce more distortion. 
+         </p>
+         <p>Phase-gradient heap integration (PGHI) (see <a href="https://ieeexplore.ieee.org/document/7890450" target="_blank">Prusa et Al</a>) relies on the phase-magnitude relations and bypasses phase instabilities by avoiding integration through areas of small magnitude, leading to significantly better and more robust phase estimates see Figure above (4). PGHI often outperforms more expensive, iterative schemes relying on alternate projection, e.g., Griffin-Lim, at the phaseless reconstruction (PLR) task.
+         </p>
+         <p>The following examples were computed on samples from the <a href="https://tech.ebu.ch/publications/sqamcd" target="_blank">EBU SQAM dataset</a>.
+         </p>
+         </h5>
+
+            <ul style="list-style-type:none">
+                <li><audio controls>
+                    <source src="audio_examples/phase/49_femaleeng_ORG.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Original
+                </li>
+
+                <li><audio controls>
+                    <source src="audio_examples/phase/49_femaleeng_TDERIV.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Phase from the time-direction derivative
+                </li>
+                <li><audio controls>
+                    <source src="audio_examples/phase/49_femaleeng_PGHI.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Phase from PGHI
+                </li>
+            </ul>
+
+
+            <ul style="list-style-type:none">
+                <li><audio controls>
+                    <source src="audio_examples/phase/50_maleeng_ORG.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Original (2)
+                </li>
+
+                <li><audio controls>
+                    <source src="audio_examples/phase/50_maleeng_TDERIV.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Phase from the time-direction derivative (2)
+                </li>
+                <li><audio controls>
+                    <source src="audio_examples/phase/50_maleeng_PGHI.flac" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio> Phase from PGHI (2)
+                </li>
+            </ul>
+
+        <a href="https://github.com/tifgan/stftGAN/raw/master/audio_examples/phase/Test_PHASES.zip">Download more examples</a>.
+
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Quote of the day: phase life</h1>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <div class="w3-xlarge w3-padding-32">
+    <a href="https://github.com/tifgan/stftGAN" class="fa fa-github w3-hover-opacity"></a>
+ </div>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
