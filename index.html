@@ -49,7 +49,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 
       <h5 class="w3-padding-32">
-<p>Since the distribution of values in the magnitude of the STFT is not well suited for a GAN (see  Figure above) we use log-magnitude coefficients. We first normalize the STFT magnitude to have maximum value 1, such that the log-magnitude is confined in (-inf, 0]. Then, the dynamic range of the log-magnitude is limited by clipping at -r (in our experiments r=10), before scaling and shifting to the range of the generator output [-1,1], i.e. dividing by r/2 before adding constant 1.
+<p>Since the distribution of values in the magnitude of the Short-Time Fourier Transform (STFT) is not well suited for a GAN (see  Figure above) we use log-magnitude coefficients. We first normalize the STFT magnitude to have maximum value 1, such that the log-magnitude is confined in (-inf, 0]. Then, the dynamic range of the log-magnitude is limited by clipping at -r (in our experiments r=10), before scaling and shifting to the range of the generator output [-1,1], i.e. dividing by r/2 before adding constant 1.
 </p>
 <p>
 For TiFGAN-M, the phase derivatives are estimated from the generated log-magnitude. For both TiFGAN-M and TiFGAN-MTF, the phase is reconstructed from the phase derivative estimates using phase-gradient heap integration (PGHI) (see Prusa et Al), which requires no iteration, such that reconstruction time is comparable to simply integrating the phase derivatives.
