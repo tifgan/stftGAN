@@ -45,29 +45,27 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         We introduce TiFGAN, the first GAN to generate audio successfully using a Time-Frequency (TF) representation and improving on the current state-of-the-art for audio synthesis with GANs. TiFGAN is an adaptation of DCGAN, originally proposed for image generation. The TiFGAN architecture additionally relies on the guidelines and principles for generating short-time Fourier data that we presented in the accompanying paper. 
       </h5>
 
-      <h1><img src="images/distributions.png" alt="Change in distributions from spectrogram to log-spectrogam" width=100%></h1>
 
+      <h1><img src="images/tfgan3.png" alt="Change in distributions from spectrogram to log-spectrogam" width=100%></h1>
+
+        
+      <h5 class="w3-padding-32">
+The general architecture for TiFGAN is depicted above. For the purpose of this contribution, we restrict to generating 1 second of audio data, sampled at 16kHz. For the short-time Fourier transform, we chose for the analysis window a (sampled) Gaussian and fix the minimal redundancy that we consider reliable, i.e., M/a = 4 and select a=128, M=512. Since the Nyquist frequency is not expected to hold significant information for the considered signals, we drop it to arrive at a representation size of 256x128, which is well suited to processing using strided convolutions. For the reconstruction of the phase we use phase-gradient heap integration (PGHI) (see <a href="https://ieeexplore.ieee.org/document/7890450" target="_blank">Prusa et Al</a>) which requires no iteration, such that reconstruction time is comparable to simply integrating the phase derivatives. For synthesis from the STFT, we use the canonical dual window, precomputed using the Large Time-Frequency Analysis Toolbox (<a href="http://ltfat.github.io/" target="_blank">LTFAT</a>).
+</h5>
+
+      <h1><img src="images/distributions.png" alt="Change in distributions from spectrogram to log-spectrogam" width=100%></h1>
 
       <h5 class="w3-padding-32">
 <p>Since the distribution of values in the magnitude of the Short-Time Fourier Transform (STFT) is not well suited for a GAN (see  Figure above) we use log-magnitude coefficients. We first normalize the STFT magnitude to have maximum value 1, such that the log-magnitude is confined in (-inf, 0]. Then, the dynamic range of the log-magnitude is limited by clipping at -r (in our experiments r=10), before scaling and shifting to the range of the generator output [-1,1], i.e. dividing by r/2 before adding constant 1.
 </p>
 <p>
-For TiFGAN-M, the phase derivatives are estimated from the generated log-magnitude. For both TiFGAN-M and TiFGAN-MTF, the phase is reconstructed from the phase derivative estimates using phase-gradient heap integration (PGHI) (see Prusa et Al), which requires no iteration, such that reconstruction time is comparable to simply integrating the phase derivatives.
-</p>
-<p>
-For synthesis from the STFT, we use the canonical dual window, precomputed using the Large Time-Frequency Analysis Toolbox (LTFAT) .
-</p>
-<p>
-The general architecture for TiFGAN is depicted below. For the purpose of this contribution, we restrict to generating 1 second of audio data, sampled at 16kHz. For the short-time Fourier transform, we fix the minimal redundancy that we consider reliable, i.e., M/a = 4 and select a=128, M=512. Since the Nyquist frequency is not expected to hold significant information for the considered signals, we drop it to arrive at a representation size of 256x128, which is well suited to processing using strided convolutions. 
-</p>
-      <h1><img src="images/tfgan3.png" alt="Change in distributions from spectrogram to log-spectrogam" width=100%></h1>
 
-      </h5>
+The network trained to generate log-magnitudes will be referred to as TiFGAN-M.  For TiFGAN-M, the phase derivatives are estimated from the generated log-magnitude. Generation of, and synthesis from, the log-magnitude STFT is the main focus of  this  contribution. Nonetheless,  we  also  trained  a  variant architecture TiFGAN-MTF for which we additionally provided the time- and frequency-direction derivatives of the (unwrapped, demodulated) phase. 
 
+</p>
+</h5>
     </div>
-
-
-  </div>
+</div>
 </div>
 
 <!-- Second Grid -->
