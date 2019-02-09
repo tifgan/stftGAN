@@ -1,0 +1,5 @@
+tfnntools/_pycache__
+tfnntools/.ipynb_checkpoints/
+.DS_Store
+tfnntools.egg-info
+*.pyc
