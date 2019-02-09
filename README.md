@@ -53,7 +53,7 @@ The Inseption Score (IS) and Frechet Inception Distance (FID) can be computed us
 
 ## License & co
 
-The content of this repository is released under the terms of the [MIT license](LICENCE.txt).
+The content of this repository is released under the terms of the [GNU3 license](LICENCE.txt).
 Please cite our [paper] if you use it.
 
 ```
