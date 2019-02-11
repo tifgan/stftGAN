@@ -64,9 +64,31 @@ The data should be extracted in the  `data` folder. On the notebook inside the f
 
 Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/train_commands` can be run to train a TiFGAN.
 
+For example TiFGAN-M can be trained using:
+```
+TODO: add the python line
+```
+
 ## Generate samples
 
 Afterwards, the corresponding file in `specgan/generate_commands` will generate 256 samples from the last checkpoint. Phases need to be recovered using the code available at `phase_recovery`. We are developing an implementation of PGHI on python.
+
+To generate the magnitudes from TiFGAN-M , please use:
+```
+TODO: add the python line
+```
+Then, the signals can be reconstructed using:
+```
+TODO: add the octave line
+```
+
+## Pre-trained networks
+The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][linkcheckpoint]. Please extract the archiv in the folder `TODO: add the folder`. To generate magnitudes using those checkpoints, use the following command:
+```
+TODO: add the python line
+```
+
+[linkcheckpoint]: https://...
 
 ## Evaluation
 
