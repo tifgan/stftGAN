@@ -38,7 +38,7 @@ brew install fftw
 
 #### Requirements
 
-*We hightly recommend to work in a virtual environnement.*
+*We highly recommend to work in a virtual environnement.*
 
 You can simply install those packages with the following command:
 ```
