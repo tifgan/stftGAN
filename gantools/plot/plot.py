@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from PIL import Image
 import numpy as np
 from matplotlib.colors import LinearSegmentedColormap as cm
-from moviepy.editor import VideoClip
+#from moviepy.editor import VideoClip
 from moviepy.video.io.bindings import mplfig_to_npimage
 
 from scipy import ndimage
