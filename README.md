@@ -16,6 +16,10 @@ First clone the repository.
 ```
 git clone https://github.com/tifgan/stftGAN.git 
 ```
+or
+```
+git clone git@github.com:tifgan/stftGAN.git
+```
 
 #### Requirements
 
@@ -33,11 +37,10 @@ TODO: Andrès, what about LTFAT
 Here are some datasets we used to train TifGAN:
 
 - [Speech Commands Zero through Nine (SC09)](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/sc09.tar.gz)
-- [Drum sound effects](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/drums.tar.gz)
 - [Bach piano performances](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/mancini_piano.tar.gz)
+- [Drum sound effects](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/drums.tar.gz)
 
-TODO: Andrès, add where the data should be extracted
-
+The data should be extracted in the  `data` folder. On the notebook inside the folder there are instructions to generate a dataset from audio files.
 
 ## Train a TifGAN
 
