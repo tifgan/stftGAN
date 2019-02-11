@@ -14,6 +14,10 @@ TODO: Add intro + nice image
 First clone the repository.
 
 ```
+git clone https://github.com/tifgan/stftGAN.git 
+```
+or
+```
 git clone git@github.com:tifgan/stftGAN.git
 ```
 
