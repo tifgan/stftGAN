@@ -12,3 +12,4 @@ matplotlib
 jupyter
 moviepy
 requests
+ltfatpy

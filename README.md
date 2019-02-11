@@ -16,9 +16,20 @@ First clone the repository.
 ```
 git clone https://github.com/tifgan/stftGAN.git 
 ```
-or
+
+#### Libraries
+
+`ltfatpy`, one of the package, requires the installation of `fftw3` and `lapack`. Please check the page
+http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
+
+Alternatively, on Debian based linux, you may try:
 ```
-git clone git@github.com:tifgan/stftGAN.git
+apt install libfftw3-dev liblapack-dev
+```
+
+For macOS based systems, you may try:
+```
+brew install fftw
 ```
 
 #### Requirements
@@ -30,18 +41,15 @@ You can simply install those packages with the following command:
 pip install -r requirements.txt
 ```
 
-TODO: Andrès, what about LTFAT
-
 ## Datasets
 
 Here are some datasets we used to train TifGAN:
 
 - [Speech Commands Zero through Nine (SC09)](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/sc09.tar.gz)
-- [Drum sound effects](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/drums.tar.gz)
 - [Bach piano performances](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/mancini_piano.tar.gz)
+- [Drum sound effects](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/drums.tar.gz)
 
-TODO: Andrès, add where the data should be extracted
-
+The data should be extracted in the  `data` folder. On the notebook inside the folder there are instructions to generate a dataset from audio files.
 
 ## Train a TifGAN
 
