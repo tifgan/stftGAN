@@ -5,7 +5,7 @@ phaseretstart;
 %% Obtain data 
 clipBelow = -10;
 
-load('commands_inception_16k_md64_200k.mat');
+load('commands_listen.mat');
 tfdata_amp = exp((-clipBelow/2)*(generated(1:100, :, :)-1));   
 tfdata_amp = [tfdata_amp zeros(size(tfdata_amp, 1), 1, size(tfdata_amp,3))]; % Add nyquist frequency
 num_data = size(tfdata_amp, 1);
