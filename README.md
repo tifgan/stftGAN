@@ -21,7 +21,7 @@ First clone the repository.
 git clone https://github.com/tifgan/stftGAN.git 
 ```
 
-#### Libraries
+#### Ltfatpy requirements
 
 `ltfatpy`, one of the package, requires the installation of `fftw3` and `lapack`. Please check the page
 http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
@@ -37,7 +37,7 @@ brew install fftw
 ```
 
 
-#### Requirements
+#### Python requirements
 
 *We highly recommend to work in a virtual environnement.*
 
