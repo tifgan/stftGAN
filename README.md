@@ -61,7 +61,7 @@ Once the speech commands dataset is generated following the notebook, any of the
 
 ## Generate samples
 
-Afterwards, the corresponding file in `specgan/generate_commands` will generate 256 samples from the last checkpoint. Phases need to be recovered using the code available at `matlab/phaseRecovery`. We are developing an implementation of PGHI on python.
+Afterwards, the corresponding file in `specgan/generate_commands` will generate 256 samples from the last checkpoint. Phases need to be recovered using the code available at `phase_recovery`. We are developing an implementation of PGHI on python.
 
 ## Evaluation
 
