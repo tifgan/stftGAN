@@ -57,11 +57,11 @@ The data should be extracted in the  `data` folder. On the notebook inside the f
 
 ## Train a TiFGAN
 
-Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/commands` can be run to train a TiFGAN.
+Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/train_commands` can be run to train a TiFGAN.
 
 ## Generate samples
 
-TODO: Andrès, add which script is used to generate sample/reconstruct the phase
+Afterwards, the corresponding file in `specgan/generate_commands` will generate 256 samples from the last checkpoint. Phases need to be recovered using the code available at `matlab/phaseRecovery`. We are developing an implementation of PGHI on python.
 
 ## Evaluation
 
