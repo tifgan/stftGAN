@@ -39,7 +39,7 @@ print(np.mean(preprocessed_images[:, :128, :]))
 
 dataset = Dataset(preprocessed_images[:, :128])
 
-time_str = 'commands_md32_4k_2'
+time_str = 'commands_md32_4k'
 global_path = '../../saved_results'
 
 name = time_str

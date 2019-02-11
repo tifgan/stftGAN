@@ -13,7 +13,6 @@ from gantools.model import SpectrogramGAN
 from gantools.data.Dataset import Dataset
 from gantools.gansystem import GANsystem
 from gantools.data import fmap
-from gantools import evaluation
 import functools
 import matplotlib.pyplot as plt
 from copy import deepcopy
@@ -23,21 +22,17 @@ downscale = 1
 
 print('start')
 
-mat_path = "../../data/logspectrograms_tgrad_fgrad_gauss_512_128_clipbelow_e-10_shifted_commands_1.mat"
+mat_path = "../../data/test_spectrograms_and_derivs_1.mat"
 raw_data = scipy.io.loadmat(mat_path)
-print(raw_data['logspecs'].shape)
-print(raw_data['tgrad'].shape)
 preprocessed_images = raw_data['logspecs']
 tgrads = raw_data['tgrad']
 
 for i in range(2, 7):
-    mat_path = "../../data/logspectrograms_tgrad_fgrad_gauss_512_128_clipbelow_e-10_shifted_commands_" + str(i) + ".mat"
+    mat_path = "../../data/test_spectrograms_and_derivs_" + str(i) + ".mat"
     raw_data = scipy.io.loadmat(mat_path)
-    print(raw_data['logspecs'].shape)
-    print(raw_data['tgrad'].shape)
     preprocessed_images = np.concatenate([preprocessed_images, raw_data['logspecs']])
     tgrads = np.concatenate([tgrads, raw_data['tgrad']])
-
+    
 del raw_data
 print(preprocessed_images.shape)
 print(tgrads.shape)
@@ -54,7 +49,7 @@ print(np.mean(tgrads[:, :128, :]))
 
 dataset = Dataset(np.stack([preprocessed_images[:, :128], tgrads[:, :128]], axis=-1))
 
-time_str = 'commands_md32_tgrads_4k_2'
+time_str = 'commands_md32_tgrads_4k'
 global_path = '../../saved_results'
 
 name = time_str

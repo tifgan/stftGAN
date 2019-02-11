@@ -23,7 +23,7 @@ downscale = 1
 
 print('start')
 
-mat_path = "../../data/logspectrograms_tgrad_fgrad_gauss_512_128_clipbelow_e-10_shifted_commands_1.mat"
+mat_path = "../../data/test_spectrograms_and_derivs_1.mat"
 raw_data = scipy.io.loadmat(mat_path)
 print(raw_data['logspecs'].shape)
 print(raw_data['tgrad'].shape)
@@ -31,7 +31,7 @@ preprocessed_images = raw_data['logspecs']
 tgrads = raw_data['tgrad']
 
 for i in range(2, 7):
-    mat_path = "../../data/logspectrograms_tgrad_fgrad_gauss_512_128_clipbelow_e-10_shifted_commands_" + str(i) + ".mat"
+    mat_path = "../../data/test_spectrograms_and_derivs_" + str(i) + ".mat"
     raw_data = scipy.io.loadmat(mat_path)
     print(raw_data['logspecs'].shape)
     print(raw_data['tgrad'].shape)
