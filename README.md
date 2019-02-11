@@ -41,8 +41,6 @@ You can simply install those packages with the following command:
 pip install -r requirements.txt
 ```
 
-TODO: Andrès, what about LTFAT
-
 ## Datasets
 
 Here are some datasets we used to train TifGAN:
