@@ -70,7 +70,7 @@ Afterwards, the corresponding file in `specgan/generate_commands` will generate 
 
 ## Evaluation
 
-The Inseption Score (IS) and Frechet Inception Distance (FID) can be computed using:
+The Inception Score (IS) is computed with [score.py](https://github.com/chrisdonahue/wavegan/blob/master/eval/inception/score.py) from the WaveGAN repository. To also compute the Frechet Inception Distance (FID), we submitted an extension on that file which is currently being processed as a [pull request](https://github.com/chrisdonahue/wavegan/pull/23). 
 
 ## License & co
 
