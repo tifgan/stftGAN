@@ -55,9 +55,9 @@ Here are some datasets we used to train TifGAN:
 
 The data should be extracted in the  `data` folder. On the notebook inside the folder there are instructions to generate a dataset from audio files.
 
-## Train a TifGAN
+## Train a TiFGAN
 
-TODO: Andrès, add which script is used to train the GAN
+Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/commands` can be run to train a TiFGAN.
 
 ## Generate samples
 
