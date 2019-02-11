@@ -21,6 +21,21 @@ First clone the repository.
 git clone https://github.com/tifgan/stftGAN.git 
 ```
 
+#### Libraries
+
+`ltfatpy`, one of the package, requires the installation of `fftw3` and `lapack`. Please check the page
+http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
+
+Alternatively, on Debian based linux, you may try:
+```
+apt install libfftw3-dev liblapack-dev
+```
+
+For macOS based systems, you may try:
+```
+brew install fftw
+```
+
 
 #### Requirements
 
@@ -68,18 +83,4 @@ with application in audio synthesis},
   year = {2019},
   url = {https://arxiv.org/abs/.......},
 }
-```
-#### Libraries
-
-`ltfatpy`, one of the package, requires the installation of `fftw3` and `lapack`. Please check the page
-http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
-
-Alternatively, on Debian based linux, you may try:
-```
-apt install libfftw3-dev liblapack-dev
-```
-
-For macOS based systems, you may try:
-```
-brew install fftw
 ```
