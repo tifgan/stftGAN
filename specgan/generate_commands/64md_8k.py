@@ -25,13 +25,8 @@ print('start')
 mat_path = "../../data/test_spectrograms_and_derivs_1.mat"
 raw_data = scipy.io.loadmat(mat_path)
 preprocessed_images = raw_data['logspecs']
-
-for i in range(2, 7):
-    mat_path = "../../data/test_spectrograms_and_derivs_" + str(i) + ".mat"
-    raw_data = scipy.io.loadmat(mat_path)
-    preprocessed_images = np.concatenate([preprocessed_images, raw_data['logspecs']])
-
 del raw_data
+
 print(preprocessed_images.shape)
 print(np.max(preprocessed_images[:, :256, :]))
 print(np.min(preprocessed_images[:, :256, :]))
