@@ -15,6 +15,7 @@ The easiest way to access the code is to clone the repository:
 
 ```
 git clone https://github.com/tifgan/stftGAN.git 
+cd stftGAN
 ```
 
 #### Software requirements
@@ -64,6 +65,7 @@ Once the speech commands dataset is generated following the notebook, any of the
 
 For example, TiFGAN-M can be trained using:
 ```
+specgan/train_commands
 python 64md_8k.py
 ```
 
@@ -73,6 +75,7 @@ Afterwards, the corresponding file in `specgan/generate_commands` will generate 
 
 To generate the magnitudes from TiFGAN-M , please use:
 ```
+specgan/generate_commands
 python 64md_8k.py
 ```
 Then, the signals can be reconstructed in MATLAB/octave with the following scripts `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`. Alternatively, for MATLAB you can try the following one-liner command:
