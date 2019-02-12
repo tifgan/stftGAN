@@ -80,7 +80,8 @@ python 64md_8k.py
 ```
 Then, the signals can be reconstructed in MATLAB/octave with the following scripts `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`. Alternatively, for MATLAB you can try the following one-liner command:
 ```
-matlab -nodesktop -nosplash -nodisplay -r "try, run('recover_phase_from_mags.m'), catch, exit(1), end, exit(0);"
+matlab -nodesktop -nosplash -nodisplay -r \
+"try, run('recover_phase_from_mags.m'), catch, exit(1), end, exit(0);"
 ```
 This command will work only if the function ltfatstart is in the path of MATLAB/octave.
 
