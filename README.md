@@ -71,12 +71,9 @@ Afterwards, the corresponding file in `specgan/generate_commands` will generate 
 
 To generate the magnitudes from TiFGAN-M , please use:
 ```
-TODO: add the python line
+python 64md_8k.py
 ```
-Then, the signals can be reconstructed using:
-```
-TODO: add the octave line
-```
+Then, the signals can be reconstructed on matlab with `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`
 
 ## Pre-trained networks
 The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][linkcheckpoint]. Please extract the archiv in the folder `TODO: add the folder`. To generate magnitudes using those checkpoints, use the following command:
