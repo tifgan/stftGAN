@@ -75,7 +75,7 @@ Afterwards, the corresponding file in `specgan/generate_commands` will generate 
 
 To generate the magnitudes from TiFGAN-M , please use:
 ```
-specgan/generate_commands
+cd specgan/generate_commands
 python 64md_8k.py
 ```
 Then, the signals can be reconstructed in MATLAB/octave with the following scripts `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`. Alternatively, for MATLAB you can try the following one-liner command:
@@ -86,10 +86,22 @@ matlab -nodesktop -nosplash -nodisplay -r \
 This command will work only if the function ltfatstart is in the path of MATLAB/octave.
 
 ## Pre-trained networks
-The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][linkcheckpoint]. Please extract the archiv in the folder `TODO: add the folder`. To generate magnitudes using those checkpoints, use the following command:
+The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][https://zenodo.org/record/2562819]. Please extract the archiv in the folder `saved_results`. To generate magnitudes using those checkpoints, use on of the following commands:
 ```
-TODO: add the python line
+cd specgan/generate_commands
+python 64md_8k.py 
 ```
+or
+```
+cd specgan/generate_commands
+python 64md_tgrad_fgrad_8k.py 
+```
+or
+```
+cd specgan/generate_piano
+python 8k_tall_large.py  
+```
+
 
 [linkcheckpoint]: https://...
 
