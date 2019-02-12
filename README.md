@@ -25,8 +25,7 @@ You also need to install the [LTFAT][ltfat.github.io] library a be sure that the
 
 #### Ltfatpy requirements
 
-`ltfatpy`, one of the packages, requires the installation of `fftw3` and `lapack`. Please check the page
-http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
+`ltfatpy`, one of the packages, requires the installation of `fftw3` and `lapack`. Please check [this page](http://dev.pages.lis-lab.fr/ltfatpy/install.html) for a proper installation.
 
 Alternatively, on Debian based linux, you may try:
 ```
@@ -86,7 +85,7 @@ matlab -nodesktop -nosplash -nodisplay -r \
 This command will work only if the function ltfatstart is in the path of MATLAB/octave.
 
 ## Pre-trained networks
-The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][https://zenodo.org/record/2562819]. Please extract the archiv in the folder `saved_results`. To generate magnitudes using those checkpoints, use on of the following commands:
+The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here](https://zenodo.org/record/2562819). Please extract the archiv in the folder `saved_results`. To generate magnitudes using those checkpoints, use on of the following commands:
 ```
 cd specgan/generate_commands
 python 64md_8k.py 
