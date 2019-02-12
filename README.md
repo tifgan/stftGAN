@@ -58,11 +58,11 @@ The data should be extracted in the  `data` folder. On the notebook inside the f
 
 ## Train a TiFGAN
 
-Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/train_commands` can be run to train a TiFGAN.
+Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/train_commands` can be used to train a TiFGAN.
 
 For example, TiFGAN-M can be trained using:
 ```
-TODO: add the python line
+python 64md_8k.py
 ```
 
 ## Generate samples
