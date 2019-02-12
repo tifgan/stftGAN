@@ -1,11 +1,6 @@
-# stftGAN
+# TiFGAN: Time Frequency Generative Adversarial Networks
 
-TODO: Add intro + nice image
-
-**paper**: [Adversarial Generation of Time-Frequency Features
-with application in audio synthesis][paper]
-
-**website**: [Webpage with supporting material][website]
+This repository contains the code accompanying the paper [Adversarial Generation of Time-Frequency Features with application in audio synthesis][paper]. Supplementary material can be found at [this webpage.][website]
 
 [paper]: https://arxiv.org/abs/...........
 [website]: https://tifgan.github.io/
@@ -16,18 +11,18 @@ Time-frequency (TF) representations provide powerful and intuitive features for 
 
 ## Installation
 
-First clone the repository.
+The easiest way to access the code is to clone the repository:
 
 ```
 git clone https://github.com/tifgan/stftGAN.git 
 ```
 
-#### Softwares requirements
-While most of the code is written in Python (we used version 3.5), the phase recovery part requires the use of `octave` or `MATLAB`. We are currently working to provide a full Python implementation.
+#### Software requirements
+While most of the code is written in Python (we used version 3.5), the phase recovery part requires the use of O`ctave` or `MATLAB`. We are currently working to provide a full-Python implementation. Unfortunately, for now, you need to install one of these two software.
 
 #### Ltfatpy requirements
 
-`ltfatpy`, one of the package, requires the installation of `fftw3` and `lapack`. Please check the page
+`ltfatpy`, one of the packages, requires the installation of `fftw3` and `lapack`. Please check the page
 http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
 
 Alternatively, on Debian based linux, you may try:
@@ -37,13 +32,13 @@ apt install libfftw3-dev liblapack-dev
 
 For macOS based systems, you may try:
 ```
-brew install fftw
+brew install fftw lapack
 ```
 
 
 #### Python requirements
 
-*We highly recommend to work in a virtual environnement.*
+*We highly recommend working in a virtual environment.*
 
 You can install the required packages with the following command:
 ```
@@ -65,7 +60,7 @@ The data should be extracted in the  `data` folder. On the notebook inside the f
 
 Once the speech commands dataset is generated following the notebook, any of the files inside of `specgan/train_commands` can be run to train a TiFGAN.
 
-For example TiFGAN-M can be trained using:
+For example, TiFGAN-M can be trained using:
 ```
 TODO: add the python line
 ```
