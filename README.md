@@ -20,6 +20,8 @@ git clone https://github.com/tifgan/stftGAN.git
 #### Software requirements
 While most of the code is written in Python (we used version 3.5), the phase recovery part requires the use of O`ctave` or `MATLAB`. We are currently working to provide a full-Python implementation. Unfortunately, for now, you need to install one of these two software.
 
+You also need to install the [LTFAT][ltfat.github.io] library a be sure that the base function ltfatstart is in the accessible path MATLAB/octave.
+
 #### Ltfatpy requirements
 
 `ltfatpy`, one of the packages, requires the installation of `fftw3` and `lapack`. Please check the page
@@ -73,7 +75,11 @@ To generate the magnitudes from TiFGAN-M , please use:
 ```
 python 64md_8k.py
 ```
-Then, the signals can be reconstructed on matlab with `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`
+Then, the signals can be reconstructed in MATLAB/octave with the following scripts `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`. Alternatively, for MATLAB you can try the following one-liner command:
+```
+matlab -nodesktop -nosplash -nodisplay -r "try, run('recover_phase_from_mags.m'), catch, exit(1), end, exit(0);"
+```
+This command will work only if the function ltfatstart is in the path of MATLAB/octave.
 
 ## Pre-trained networks
 The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][linkcheckpoint]. Please extract the archiv in the folder `TODO: add the folder`. To generate magnitudes using those checkpoints, use the following command:
