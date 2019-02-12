@@ -2,7 +2,7 @@
 
 This repository contains the code accompanying the paper [Adversarial Generation of Time-Frequency Features with application in audio synthesis][paper]. Supplementary material can be found at [this webpage.][website]
 
-[paper]: https://arxiv.org/abs/...........
+[paper]: https://www.researchgate.net/publication/331044223_Adversarial_Generation_of_Time-Frequency_Features_with_application_in_audio_synthesis
 [website]: https://tifgan.github.io/
 
 #### Abstract
