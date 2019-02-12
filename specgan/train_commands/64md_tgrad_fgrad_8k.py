@@ -30,7 +30,7 @@ preprocessed_images = raw_data['logspecs']
 tgrads = raw_data['tgrad']
 fgrads = raw_data['fgrad']
 
-for i in range(2, 2):
+for i in range(2, 7):
     mat_path = "../../data/test_spectrograms_and_derivs_" + str(i) + ".mat"
     raw_data = scipy.io.loadmat(mat_path)
     print(raw_data['logspecs'].shape)
