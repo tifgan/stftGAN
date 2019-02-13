@@ -2,7 +2,7 @@
 
 This repository contains the code accompanying the paper [Adversarial Generation of Time-Frequency Features with application in audio synthesis][paper]. Supplementary material can be found at [this webpage.][website]
 
-[paper]: https://www.researchgate.net/publication/331044223_Adversarial_Generation_of_Time-Frequency_Features_with_application_in_audio_synthesis
+[paper]: https://arxiv.org/abs/1902.04072
 [website]: https://tifgan.github.io/
 
 #### Abstract
@@ -101,9 +101,6 @@ cd specgan/generate_piano
 python 8k_tall_large.py  
 ```
 
-
-[linkcheckpoint]: https://...
-
 ## Evaluation
 
 The Inception Score (IS) is computed with [score.py](https://github.com/chrisdonahue/wavegan/blob/master/eval/inception/score.py) from the WaveGAN repository. To also compute the Fréchet Inception Distance (FID), we submitted an extension of that file which is currently being processed as a [pull request](https://github.com/chrisdonahue/wavegan/pull/23). 
@@ -120,6 +117,6 @@ with application in audio synthesis},
   author = {Marafioti, Andrès and Holighaus, Nicki and Perraudin, Nathanaël and Majdak, Piotr},
   journal = {arXiv},
   year = {2019},
-  url = {https://arxiv.org/abs/.......},
+  url = {https://arxiv.org/abs/1902.04072},
 }
 ```
