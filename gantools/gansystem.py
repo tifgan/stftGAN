@@ -256,12 +256,12 @@ class GANsystem(NNSystem):
 class PaulinaGANsystem(GANsystem):
 
 
-    def _classical_gan_loss_d(self, real, fake):
-        return -tf.reduce_mean(tf.log(tf.nn.sigmoid(real)) + tf.log(1-tf.nn.sigmoid(fake)))
+    def _classical_gan_loss_d(self, real, fake, epsilon=1e-5):
+        return -tf.reduce_mean(tf.log(epsilon + tf.nn.sigmoid(real)) + tf.log(epsilon +(1-tf.nn.sigmoid(fake))))
         # return -tf.reduce_mean(tf.log(tf.nn.sigmoid(real)) - fake + tf.log(tf.nn.sigmoid(fake)))
 
-    def _classical_gan_loss_g(self, fake):
-        return tf.reduce_mean(tf.log(1-tf.nn.sigmoid(fake)))
+    def _classical_gan_loss_g(self, fake, epsilon=1e-5):
+        return tf.reduce_mean(tf.log(epsilon + (1-tf.nn.sigmoid(fake))))
         # return tf.reduce_mean(- fake + tf.log(tf.nn.sigmoid(fake)))
 
 
@@ -367,7 +367,9 @@ class PaulinaGANsystem(GANsystem):
         print ('The duality gap score is: ')
         print ('{0:.16f}'.format(dualitygap_score))
         print ('The minmax is: ')
-        print ('{0:.16f}'.format(worst_minmax))
+        print ('{0:.16f}'.format(worst_minmax))        
+        print ('The maxmin is: ')
+        print ('{0:.16f}'.format(worst_maxmin))
 
         if sess_to_be_closed:
             self._sess.close()

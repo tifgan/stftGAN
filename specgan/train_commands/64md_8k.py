@@ -11,7 +11,7 @@ from gantools import utils
 from gantools import plot
 from gantools.model import SpectrogramGAN
 from gantools.data.Dataset import Dataset
-from gantools.gansystem import GANsystem
+from gantools.gansystem import GANsystem, PaulinaGANsystem
 from gantools.data import fmap
 import functools
 import matplotlib.pyplot as plt
@@ -26,7 +26,7 @@ mat_path = "../../data/test_spectrograms_and_derivs_1.mat"
 raw_data = scipy.io.loadmat(mat_path)
 preprocessed_images = raw_data['logspecs']
 
-for i in range(2, 7):
+for i in range(2, 6):
     mat_path = "../../data/test_spectrograms_and_derivs_" + str(i) + ".mat"
     raw_data = scipy.io.loadmat(mat_path)
     preprocessed_images = np.concatenate([preprocessed_images, raw_data['logspecs']])
@@ -111,11 +111,11 @@ params['print_every'] = 50 # Console summaries every ** iterations
 params['save_every'] = 1000 # Save the model every ** iterations
 params['summary_dir'] = os.path.join(global_path, name +'_summary/')
 params['save_dir'] = os.path.join(global_path, name + '_checkpoints/')
-params['Nstats'] = 500
+params['Nstats'] = 2000
 
 resume, params = utils.test_resume(True, params)
 params['optimization']['epoch'] = 10000
 
-wgan = GANsystem(SpectrogramGAN, params)
+wgan = PaulinaGANsystem(SpectrogramGAN, params)
 
 wgan.train(dataset, resume=resume)
