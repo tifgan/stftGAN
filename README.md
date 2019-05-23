@@ -1,3 +1,16 @@
+# Modification of TiFGAN
+
+This is a modification of the TiFGAN code `Time Frequency Generative Adversarial Networks` for the paper `A Domain Agnostic Measure for Monitoring and Evaluating GANs`.
+
+To run the experiment, follow the setup instruction of the original README, i.e., what is below. Then run 
+
+```
+cd specgan/generate_commands
+python 64md_8k.py 
+```
+
+You can use the notebook `TifGAN-score.ipynb` to generate the plot.
+
 # TiFGAN: Time Frequency Generative Adversarial Networks
 
 This repository contains the code accompanying the paper [Adversarial Generation of Time-Frequency Features with application in audio synthesis][paper]. Supplementary material can be found at [this webpage.][website]
