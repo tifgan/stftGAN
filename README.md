@@ -2,7 +2,7 @@
 
 This repository contains the code accompanying the paper [Adversarial Generation of Time-Frequency Features with application in audio synthesis][paper]. Supplementary material can be found at [this webpage.][website]
 
-[paper]: https://arxiv.org/abs/...........
+[paper]: https://arxiv.org/abs/1902.04072
 [website]: https://tifgan.github.io/
 
 #### Abstract
@@ -25,8 +25,7 @@ You also need to install the [LTFAT][ltfat.github.io] library a be sure that the
 
 #### Ltfatpy requirements
 
-`ltfatpy`, one of the packages, requires the installation of `fftw3` and `lapack`. Please check the page
-http://dev.pages.lis-lab.fr/ltfatpy/install.html for a proper installation.
+`ltfatpy`, one of the packages, requires the installation of `fftw3` and `lapack`. Please check [this page](http://dev.pages.lis-lab.fr/ltfatpy/install.html) for a proper installation.
 
 Alternatively, on Debian based linux, you may try:
 ```
@@ -86,7 +85,7 @@ matlab -nodesktop -nosplash -nodisplay -r \
 This command will work only if the function ltfatstart is in the path of MATLAB/octave.
 
 ## Pre-trained networks
-The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here][https://zenodo.org/record/2562819]. Please extract the archiv in the folder `saved_results`. To generate magnitudes using those checkpoints, use on of the following commands:
+The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here](https://zenodo.org/record/2562819). Please extract the archiv in the folder `saved_results`. To generate magnitudes using those checkpoints, use on of the following commands:
 ```
 cd specgan/generate_commands
 python 64md_8k.py 
@@ -101,9 +100,6 @@ or
 cd specgan/generate_piano
 python 8k_tall_large.py  
 ```
-
-
-[linkcheckpoint]: https://...
 
 ## Evaluation
 
@@ -121,6 +117,6 @@ with application in audio synthesis},
   author = {Marafioti, Andrès and Holighaus, Nicki and Perraudin, Nathanaël and Majdak, Piotr},
   journal = {arXiv},
   year = {2019},
-  url = {https://arxiv.org/abs/.......},
+  url = {https://arxiv.org/abs/1902.04072},
 }
 ```
