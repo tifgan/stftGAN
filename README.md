@@ -50,13 +50,19 @@ pip install -r requirements.txt
 
 ## Datasets
 
+To download the commands dataset used on the paper and pre-process the Time-Frequency features used for training the networks, run on the main folder:
+```
+python download_commands.py
+python generate_commands_dataset.py
+```
+
 Here are some datasets we used to train TifGAN:
 
 - [Speech Commands Zero through Nine (SC09)](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/sc09.tar.gz)
 - [Bach piano performances](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/mancini_piano.tar.gz)
 - [Drum sound effects](http://deepyeti.ucsd.edu/cdonahue/wavegan/data/drums.tar.gz)
 
-The data should be extracted in the  `data` folder. On the notebook inside the folder there are instructions to generate a dataset from audio files.
+To work with these or other dataset, they just follow the notebook inside the `data` folder. It contains instructions to generate a dataset from a set of audio files.
 
 ## Train a TiFGAN
 
@@ -64,7 +70,7 @@ Once the speech commands dataset is generated following the notebook, any of the
 
 For example, TiFGAN-M can be trained using:
 ```
-specgan/train_commands
+cd specgan/train_commands
 python 64md_8k.py
 ```
 
