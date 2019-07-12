@@ -19,9 +19,9 @@ cd stftGAN
 ```
 
 #### Software requirements
-While most of the code is written in Python (we used version 3.5), the phase recovery part requires the use of O`ctave` or `MATLAB`. We are currently working to provide a full-Python implementation. Unfortunately, for now, you need to install one of these two software.
+While most of the code is written in Python (we used version 3.5), the phase recovery part requires the use of `Octave` or `MATLAB`. We are currently working to provide a full-Python implementation. Unfortunately, for now, you need to install one of these two software.
 
-You also need to install the [LTFAT][ltfat.github.io] library a be sure that the base function ltfatstart is in the accessible path MATLAB/octave.
+You also need to install the [LTFAT](ltfat.github.io) library a be sure that the base function ltfatstart is in the accessible path MATLAB/octave.
 
 #### Ltfatpy requirements
 
