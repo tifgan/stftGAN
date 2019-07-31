@@ -17,6 +17,7 @@ import functools
 import matplotlib.pyplot as plt
 from copy import deepcopy
 import scipy.io
+from phase_recovery.numba_pghi import pghi
 
 downscale = 1
 
@@ -128,17 +129,43 @@ def clip_dist2(nsamples, nlatent, m=2.5):
 d2 = clip_dist2(nsamples, nlatent)
 np.max(d2), np.min(d2)
 
-real_signals = dataset.get_samples(N=64)
-print(real_signals.shape)
-fake_signals = np.squeeze(wgan.generate(N=nsamples, z=d2))
+generated_signals = np.squeeze(wgan.generate(N=nsamples, z=d2))
+generated_signals = np.exp(5*(generated_signals-1)) # Undo preprocessing
+generated_signals = np.concatenate([generated_signals, np.zeros_like(generated_signals)[:, 0:1, :]], axis=1) #Fill last column of freqs with zeros
 
-print(real_signals.max())
-print(real_signals.min())
-print(real_signals.mean())
+print(generated_signals.max())
+print(generated_signals.min())
+print(generated_signals.mean())
 
-print(fake_signals.max())
-print(fake_signals.min())
-print(fake_signals.mean())
-import scipy.io
+##Phase recovery
 
-scipy.io.savemat('commands_listen.mat', {"original": real_signals, "generated": fake_signals})
+from data.ourLTFATStft import LTFATStft
+import ltfatpy
+from data.modGabPhaseGrad import modgabphasegrad
+ltfatpy.gabphasegrad = modgabphasegrad # The original function is not implemented for one sided stfts on ltfatpy
+
+fft_hop_size = 128 # Change the fft params if the dataset was generated with others
+fft_window_length = 512
+L = 16384
+clipBelow = -10
+
+anStftWrapper = LTFATStft()
+
+# Compute Tgrad and Fgrad from the generated spectrograms
+tgrads = np.zeros_like(generated_signals)
+fgrads = np.zeros_like(generated_signals)
+gs = {'name': 'gauss', 'M': fft_window_length}
+    
+for index, magSpectrogram in enumerate(generated_signals):
+    tgrads[index], fgrads[index] = ltfatpy.gabphasegrad('abs', magSpectrogram, gs, fft_hop_size)
+
+reconstructed_audios = np.zeros([len(generated_signals), L])
+for index, magSpectrogram in enumerate(generated_signals):
+    logMagSpectrogram = np.log(magSpectrogram.astype(np.float64))
+    phase = pghi(logMagSpectrogram, tgrads[index], fgrads[index], fft_hop_size, fft_window_length, L, tol=10)
+    reconstructed_audios[index] = anStftWrapper.reconstructSignalFromLoggedSpectogram(logMagSpectrogram, phase, windowLength=fft_window_length, hopSize=fft_hop_size)
+    print(reconstructed_audios[index].max())
+
+print("reconstructed audios!")
+
+scipy.io.savemat('commands_listen.mat', {"reconstructed": reconstructed_audios, "generated_spectrograms": generated_signals})
