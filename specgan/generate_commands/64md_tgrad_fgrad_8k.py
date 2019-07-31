@@ -179,17 +179,34 @@ def clip_dist2(nsamples, nlatent, m=2.5):
 d2 = clip_dist2(nsamples, nlatent)
 np.max(d2), np.min(d2)
 
-real_signals = dataset.get_samples(N=64)
-print(real_signals.shape)
-fake_signals = np.squeeze(wgan.generate(N=nsamples, z=d2))
+generated_signals = np.squeeze(wgan.generate(N=nsamples, z=d2))
+generated_signals = np.concatenate([generated_signals, np.zeros_like(generated_signals)[:, 0:1, :, :]], axis=1) #Fill last column of freqs with zeros
+generated_spectrograms = 5*(generated_signals[:, :, :, 0]-1) # Undo preprocessing
+generated_tgrads = 64*generated_signals[:, :, :, 1] # Undo preprocessing
+generated_fgrads = 256*generated_signals[:, :, :, 2] # Undo preprocessing
 
-print(real_signals.max())
-print(real_signals.min())
-print(real_signals.mean())
+##Phase recovery
 
-print(fake_signals.max())
-print(fake_signals.min())
-print(fake_signals.mean())
-import scipy.io
+from data.ourLTFATStft import LTFATStft
 
-scipy.io.savemat('commands_listen.mat', {"original": real_signals, "generated": fake_signals})
+fft_hop_size = 128 # Change the fft params if the dataset was generated with others
+fft_window_length = 512
+L = 16384
+clipBelow = -10
+
+anStftWrapper = LTFATStft()
+from phase_recovery.numba_pghi import pghi
+
+generated_tgrads = 2*np.pi*fft_hop_size/L * generated_tgrads #Prescale
+generated_fgrads = - 2*np.pi/fft_window_length * (generated_fgrads + np.tile(np.arange(128)*fft_hop_size, (int(fft_window_length/2+1), 1))) #Prescale
+
+reconstructed_audios = np.zeros([len(generated_signals), L])
+for index, logMagSpectrogram in enumerate(generated_spectrograms):
+    logMagSpectrogram = logMagSpectrogram.astype(np.float64)
+    phase = pghi(logMagSpectrogram, generated_tgrads[index], generated_fgrads[index], fft_hop_size, fft_window_length, L, tol=10)
+    reconstructed_audios[index] = anStftWrapper.reconstructSignalFromLoggedSpectogram(logMagSpectrogram, phase, windowLength=fft_window_length, hopSize=fft_hop_size)
+    print(reconstructed_audios[index].max())
+
+print("reconstructed audios!")
+
+scipy.io.savemat('commands_listen.mat', {"reconstructed": reconstructed_audios, "generated_spectrograms": generated_signals})
