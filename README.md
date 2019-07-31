@@ -18,10 +18,14 @@ git clone https://github.com/tifgan/stftGAN.git
 cd stftGAN
 ```
 
-#### Software requirements
-While most of the code is written in Python (we used version 3.5), the phase recovery part requires the use of `Octave` or `MATLAB`. We are currently working to provide a full-Python implementation. Unfortunately, for now, you need to install one of these two software.
+#### Python requirements
 
-You also need to install the [LTFAT](ltfat.github.io) library a be sure that the base function ltfatstart is in the accessible path MATLAB/octave.
+*We highly recommend working in a virtual environment.*
+
+You can install the required packages with the following command:
+```
+pip install -r requirements.txt
+```
 
 #### Ltfatpy requirements
 
@@ -36,17 +40,6 @@ For macOS based systems, you may try:
 ```
 brew install fftw lapack
 ```
-
-
-#### Python requirements
-
-*We highly recommend working in a virtual environment.*
-
-You can install the required packages with the following command:
-```
-pip install -r requirements.txt
-```
-
 
 ## Datasets
 
