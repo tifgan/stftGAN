@@ -76,12 +76,7 @@ To generate the magnitudes from TiFGAN-M , please use:
 cd specgan/generate_commands
 python 64md_8k.py
 ```
-Then, the signals can be reconstructed in MATLAB/octave with the following scripts `recover_phase_from_mags.m` or `recover_phase_from_mags_and_derivs.m`. Alternatively, for MATLAB you can try the following one-liner command:
-```
-matlab -nodesktop -nosplash -nodisplay -r \
-"try, run('recover_phase_from_mags.m'), catch, exit(1), end, exit(0);"
-```
-This command will work only if the function ltfatstart is in the path of MATLAB/octave.
+The output of that script is a .mat file containing the generated spectrograms and the reconstructed sounds.
 
 ## Pre-trained networks
 The checkpoints used for the evaluation of the [paper][paper] can be downloaded [here](https://zenodo.org/record/2562819). Please extract the archiv in the folder `saved_results`. To generate magnitudes using those checkpoints, use on of the following commands:
