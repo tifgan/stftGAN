@@ -105,12 +105,17 @@ The content of this repository is released under the terms of the [GNU3 license]
 Please cite our [paper] if you use it.
 
 ```
-@article{,
-  title = {Adversarial Generation of Time-Frequency Features
-with application in audio synthesis},
-  author = {Marafioti, Andrès and Holighaus, Nicki and Perraudin, Nathanaël and Majdak, Piotr},
-  journal = {arXiv},
-  year = {2019},
-  url = {https://arxiv.org/abs/1902.04072},
+@InProceedings{marafioti2019adversarial,
+  author    = {Marafioti, Andr{\'e}s and Perraudin, Nathana{\"e}l and Holighaus, Nicki and Majdak, Piotr},
+  title     = {Adversarial Generation of Time-Frequency Features with application in audio synthesis},
+  booktitle = {Proc. of the 36th ICML},
+  year      = {2019},
+  editor    = {Chaudhuri, Kamalika and Salakhutdinov, Ruslan},
+  volume    = {97},
+  pages     = {4352--4362},
+  address   = {Long Beach, California, USA},
+  month     = {09--15 Jun},
+  publisher = {PMLR},
+  url       = {http://proceedings.mlr.press/v97/marafioti19a.html},
 }
 ```
